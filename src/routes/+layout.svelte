@@ -24,9 +24,35 @@
 	function isActive(href: string) {
 		return page.url.pathname === href || page.url.pathname.startsWith(href + '/');
 	}
+
+	const ogTitle = 'cry-babies';
+	const ogDescription =
+		'A calm, glassy cry tracker — log when, why, and how hard. Multiple profiles per account, comprehensive dashboard.';
+	const ogImage = $derived(`${page.url.origin}/og.png`);
+	const ogUrl = $derived(page.url.href);
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head>
+	<link rel="icon" href={favicon} />
+	<title>cry-babies</title>
+	<meta name="description" content={ogDescription} />
+
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="cry-babies" />
+	<meta property="og:title" content={ogTitle} />
+	<meta property="og:description" content={ogDescription} />
+	<meta property="og:url" content={ogUrl} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="1758" />
+	<meta property="og:image:height" content="1132" />
+	<meta property="og:image:alt" content="cry-babies dashboard: cry log with intensity, trigger, soothed-by, and notes" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={ogTitle} />
+	<meta name="twitter:description" content={ogDescription} />
+	<meta name="twitter:image" content={ogImage} />
+</svelte:head>
 
 <div class="flex min-h-screen flex-col">
 	<header class="sticky top-0 z-40 px-4 pt-4">

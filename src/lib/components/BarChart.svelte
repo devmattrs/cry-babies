@@ -14,7 +14,7 @@
 	<div class="muted flex h-32 items-center justify-center text-sm">{emptyLabel}</div>
 {:else if orientation === 'vertical'}
 	<div class="flex h-40 items-end gap-1.5">
-		{#each bars as bar (bar.label)}
+		{#each bars as bar}
 			{@const pct = (bar.value / computedMax) * 100}
 			<div class="flex h-full flex-1 flex-col items-center justify-end gap-1.5">
 				<div
@@ -33,7 +33,7 @@
 	</div>
 {:else}
 	<div class="flex flex-col gap-2">
-		{#each bars as bar (bar.label)}
+		{#each bars as bar}
 			{@const pct = (bar.value / computedMax) * 100}
 			<div class="flex items-center gap-3">
 				<div class="w-28 shrink-0 truncate text-sm">{bar.label}</div>

@@ -1,4 +1,4 @@
-import { and, count, desc, eq, gte, sql, sum } from 'drizzle-orm';
+import { and, count, desc, eq, gte, lt, sql, sum } from 'drizzle-orm';
 import { db } from './db';
 import { cryEvents } from './db/schema';
 
@@ -55,13 +55,7 @@ export async function getProfileStats(profileId: string) {
 	const [prevWeek] = await db
 		.select({ count: count() })
 		.from(cryEvents)
-		.where(
-			and(
-				where,
-				gte(cryEvents.occurredAt, sincePrev7d),
-				sql`${cryEvents.occurredAt} < ${since7d}`
-			)
-		);
+		.where(and(where, gte(cryEvents.occurredAt, sincePrev7d), lt(cryEvents.occurredAt, since7d)));
 
 	const daily = await db
 		.select({
